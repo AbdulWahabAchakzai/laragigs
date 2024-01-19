@@ -37,11 +37,10 @@ class ListingController extends Controller
             'email' => ['required', 'email'],
             'tags' => 'required',
             'description' => 'required'
-
         ]);
 
         Listing::create($formFields);
 
-        return redirect('/');
+        return redirect('/')->with('message', 'Listing successfully created...!');
     }
 }
