@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ListingController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Listing;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',  [ListingController::class, 'index']);
+
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+Route::post('/listings', [ListingController::class, 'store']);
+
+Route::get('/listings/{listing}',  [ListingController::class, 'show']);
+
+
+
+/*
+ ** Common resource routes **
+
+index - Show all listings
+show - Show single listing
+create - Show form to create new listing
+store - Store new listing
+edit - show form to edit form
+update - Update listing
+destroy - Delete listing
+
+*/
