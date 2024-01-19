@@ -9,6 +9,10 @@ class Listing extends Model
 {
     use HasFactory;
 
+
+    // protected $fillable = ['title', 'company', 'location', 'website', 'email', 'description', 'tags'];
+    // Allowing the above fields to be stored in their columns of the database.
+
     public function scopeFilter($query, array $filters)
     {
         if ($filters['tag'] ?? false) {
