@@ -6,6 +6,7 @@ use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
+
 class ListingController extends Controller
 {
 
@@ -57,7 +58,6 @@ class ListingController extends Controller
 
     public function update(Request $request, Listing $listing)
     {
-        // dd($request->file('logo'));
         $formFields = $request->validate([
             'title'    => 'required',
             'company'  => ['required'],
@@ -82,5 +82,10 @@ class ListingController extends Controller
     {
         $listing->delete();
         return redirect('/')->with('message', 'Post deleted successfully');
+    }
+
+    public function manage()
+    {
+        return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
     }
 }

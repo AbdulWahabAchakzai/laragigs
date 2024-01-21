@@ -33,8 +33,12 @@ Route::put('/listings/{listing}', [ListingController::class, 'update']);
 
 Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
 
+// Manage Listings
+Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware('auth');
+
 // Single Listing
 Route::get('/listings/{listing}',  [ListingController::class, 'show']);
+
 
 // Show Create/Register form
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
@@ -48,6 +52,7 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 // Show User Login Form
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 
+// Login form
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 
