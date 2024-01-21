@@ -20,7 +20,7 @@ use App\Http\Controllers\ListingController;
 Route::get('/',  [ListingController::class, 'index']);
 
 // Show Create Form
-Route::get('/listings/create', [ListingController::class, 'create']);
+Route::get('/listings/create', [ListingController::class, 'create'])->middleware('auth');
 
 // Store Listing Data
 Route::post('/listings', [ListingController::class, 'store']);
@@ -37,16 +37,16 @@ Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
 Route::get('/listings/{listing}',  [ListingController::class, 'show']);
 
 // Show Create/Register form
-Route::get('/register', [UserController::class, 'create']);
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 
 // Create new user
 Route::post('/users', [UserController::class, 'store']);
 
 // Log User Out
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 // Show User Login Form
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
